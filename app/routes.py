@@ -1,5 +1,8 @@
 import csv
 from collections import Counter
+
+from flask import render_template
+
 from app import app
 
 
@@ -16,7 +19,8 @@ def get_results_by_language(language):
 
         language_counter = Counter()
 
-        for _, line in zip(range(1, 10), csv_reader):
+        #for _, line in zip(range(1, 10), csv_reader):
+        for line in csv_reader:
             languages = line['LanguageWorkedWith'].split(';')
             language_counter.update(languages)
 
@@ -32,7 +36,8 @@ def get_results_by_question(question):
 
         counts = Counter()
 
-        for _, line in zip(range(1, 10), csv_reader):
+        #for _, line in zip(range(1, 10), csv_reader):
+        for line in csv_reader:
             counts[line[question]] += 1
 
-    return f"{counts}"
+    return render_template('question.html', results=counts, question=question)

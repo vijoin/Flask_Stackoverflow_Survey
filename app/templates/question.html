@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ question }} Results</title>
+</head>
+<body>
+<h1>{{ question }} Results</h1>
+<br/>
+
+{% for result, amount in results.items() %}
+<p>{{ result }}: {{ amount }}
+{% endfor %}
+
+</body>
+</html>
